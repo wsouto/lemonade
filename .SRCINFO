@@ -6,6 +6,7 @@ pkgbase = lemonade
 	arch = x86_64
 	license = Apache-2.0
 	makedepends = cargo
+	makedepends = cargo-tauri
 	makedepends = cli11
 	makedepends = cmake
 	makedepends = cpp-httplib

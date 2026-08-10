@@ -17,6 +17,7 @@ url=https://github.com/lemonade-sdk/lemonade
 license=(Apache-2.0)
 makedepends=(
   cargo
+  cargo-tauri
   cli11
   cmake
   cpp-httplib
@@ -69,7 +70,7 @@ build() {
 
   cd lemonade/src/app
   export RUSTUP_TOOLCHAIN=stable
-  npm run tauri build -- --no-bundle
+  cargo tauri build --no-bundle
 }
 
 package_lemonade-server() {
