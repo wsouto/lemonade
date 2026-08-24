@@ -2,6 +2,7 @@
 # Maintainer: Christian Heusel <gromit@archlinux.org>
 # Contributor: George Sofianos <george@sofianos.dev>
 # Contributor: Michele Balistreri <michele@bitgamma.com>
+# Contributor: Caleb Maclennan <caleb@alerque.com>
 
 pkgbase=lemonade
 pkgname=(
@@ -10,7 +11,7 @@ pkgname=(
 )
 pkgdesc='Lemonade helps users discover and run local AI apps by serving optimized LLMs right from their own GPUs and NPUs'
 pkgver=11.7.0
-pkgrel=1
+pkgrel=2
 arch=(x86_64)
 url=https://github.com/lemonade-sdk/lemonade
 license=(Apache-2.0)
@@ -38,13 +39,16 @@ makedepends=(
 source=(
   git+${url}.git#tag=v${pkgver}
   lemonade-sysusers.patch
+  lemonade-web-app.patch
 )
 b2sums=('42b68002e91eb07e7a03310948388ab2df2b21f8d0afff8d31ad44f70013ceb0692cf770014a7d0bb7dfcdc00cefcaad5e695216d5d15b252435595b80d30add'
-        '5b8174e0d88a825eb69e96f82140bae27a081665b472efaac0920829963f7790b9a1b9c9f5d787901ff4278eb31dc389e3e09dfad61fda490c7ceea355c51e14')
+        '5b8174e0d88a825eb69e96f82140bae27a081665b472efaac0920829963f7790b9a1b9c9f5d787901ff4278eb31dc389e3e09dfad61fda490c7ceea355c51e14'
+        '229a2de3961618b00fffbaf0fdec40b121a5b900542099d82c27b486c6368ab11237128da3e4d0ceeef1c71e37325857667a37459dd7f82572be1f86cf57eae8')
 
 prepare() {
   cd lemonade
   patch -Np1 -i ../lemonade-sysusers.patch
+  patch -Np1 -i ../lemonade-web-app.patch
 
   cd src/app
   export RUSTUP_TOOLCHAIN=stable
