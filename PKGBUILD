@@ -11,7 +11,7 @@ pkgname=(
 )
 pkgdesc='Lemonade helps users discover and run local AI apps by serving optimized LLMs right from their own GPUs and NPUs'
 pkgver=11.9.0
-pkgrel=1
+pkgrel=2
 arch=(x86_64)
 url=https://github.com/lemonade-sdk/lemonade
 license=(Apache-2.0)
@@ -90,7 +90,7 @@ package_lemonade-server() {
     'fastflowlm: FLM support'
     'llama-cpp: Use system llama.cpp'
   )
-  backup=(etc/lemonade/conf.d/zz-secrets.conf)
+  backup=(etc/default/lemond)
 
   DESTDIR="${pkgdir}" cmake --install build
 }
