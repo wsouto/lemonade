@@ -117,8 +117,8 @@ patch -Np1 --dry-run -i "$REPO/lemonade-web-app.patch"
 A hunk "succeeded with offset/fuzz" is fine; a failed hunk means updating the
 patch's context to match. The patch exists so the two split packages do not both
 install `/usr/share/pixmaps/lemonade-app.svg` / `Icon=lemonade-app` (Arch
-packaging commit `35f8b64`). **Keep it** even with the web-app entry removed —
-it also renames the server package's pixmap.
+packaging commit `35f8b64`). **Keep it** — it renames the server package's
+pixmap/icon so both split packages can be installed side by side.
 
 ### 5. Preflight dependencies and Node
 
