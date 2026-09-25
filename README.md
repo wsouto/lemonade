@@ -22,13 +22,12 @@ This build:
 - Installs `lemond` (daemon), `lemonade` (CLI) and `lemonade-app` (native GUI).
   The old `lemonade-server` binary name no longer exists.
 - systemd service is `lemond.service`; config `etc/default/lemond`.
-- The web-app menu entry is **removed** from `lemonade-server` (see
-  [Web-app menu entry](#web-app-menu-entry)); the menu shows only
-  "Lemonade App".
+- Both menu entries are shipped as upstream intends: "Lemonade App"
+  (`lemonade-desktop`) and "Lemonade Web App" (`lemonade-server`).
 
 ## Deviations from the upstream PKGBUILD
 
-Three local edits, committed locally on `main`. Re-check them after any
+Two local edits, committed locally on `main`. Re-check them after any
 upstream packaging update (line numbers below are for the current revision):
 
 1. **Version / tag** (`PKGBUILD:13-15`) — builds a specific upstream ref, which
@@ -46,8 +45,8 @@ upstream packaging update (line numbers below are for the current revision):
    ```
    printf '%s\n' "${pkgver}" > .version
    ```
-3. **Web-app entry removal** (`PKGBUILD:100-102`, in
-   `package_lemonade-server()`) — local preference, see below.
+
+The packaging otherwise matches upstream (no web-app entry removal).
 
 ## Updating to a new release
 
@@ -174,29 +173,27 @@ Both are thin frontends to `lemond`. The web launcher opens
 `http://localhost:<port>/lemonade` in a Chromium `--app` window (needs a
 Chromium browser and `jq`; otherwise falls back to `xdg-open`).
 
-Current choice: keep the native app, drop the web-app **menu entry** (the
-`lemonade-web-app` binary and pixmap remain, runnable from a terminal).
+Both entries are shipped by default. If you ever want only one:
 
-### To restore the web-app entry (both entries)
+### Keep only the native app (drop the web-app entry)
 
-Delete or comment `PKGBUILD:100-102`, then:
+Add to `package_lemonade-server()` (after the `cmake --install` line):
 
 ```bash
-makepkg -R -f --noconfirm
-sudo pacman -U lemonade-server-<ver>-1-x86_64.pkg.tar.zst
+rm -f "${pkgdir}/usr/share/applications/lemonade-web-app.desktop"
 ```
 
-### To go web-app only
+then `makepkg -R -f --noconfirm` and reinstall `lemonade-server`.
 
-Restore the entry as above, reinstall the server, then remove the native app:
+### Keep only the web app
 
 ```bash
 sudo pacman -Rns lemonade-desktop
 ```
 
-### To keep the entry out of the menu (hidden but functional)
+### Hide the web-app entry but keep it functional
 
-Replace the `rm` line with a `NoDisplay=true` injection:
+Ship it with `NoDisplay=true` instead of deleting it:
 
 ```bash
 printf '\nNoDisplay=true\n' >> "${pkgdir}/usr/share/applications/lemonade-web-app.desktop"

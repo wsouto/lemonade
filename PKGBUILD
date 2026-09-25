@@ -96,10 +96,6 @@ package_lemonade-server() {
   backup=(etc/default/lemond)
 
   DESTDIR="${pkgdir}" cmake --install build
-
-  # Local tweak: the split lemonade-desktop package ships the native
-  # "Lemonade App" launcher, so drop the duplicate web-app menu entry.
-  rm -f "${pkgdir}/usr/share/applications/lemonade-web-app.desktop"
 }
 
 package_lemonade-desktop() {
