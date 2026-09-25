@@ -1,5 +1,9 @@
 # Local Lemonade packaging (Arch Linux)
 
+Links:
+[Arch Package Guidelines](https://wiki.archlinux.org/title/Arch_package_guidelines) |
+[AUR Submission Guidelines](https://wiki.archlinux.org/title/AUR_submission_guidelines)
+
 Personal checkout of the **official Arch packaging repo** for Lemonade, used to
 build the newest upstream release locally before it lands in `extra`.
 
@@ -11,7 +15,7 @@ build the newest upstream release locally before it lands in `extra`.
 ## Last build
 
 | | |
-|---|---|
+| --- | --- |
 | Version | `2026.40.0-1` |
 | Upstream ref | `candidate-v2026.40.0` (commit `29b21e73`) |
 | Built | 2026-09-25, Node `v26.10.0` (vite-plus), mbedTLS 4.2 |
@@ -32,16 +36,19 @@ upstream packaging update (line numbers below are for the current revision):
 
 1. **Version / tag** (`PKGBUILD:13-15`) — builds a specific upstream ref, which
    may be a *candidate* prerelease:
+
    ```
    pkgver=2026.40.0
    pkgrel=1
    _tag=candidate-v${pkgver}
    ```
+
 2. **`.version` file** (`PKGBUILD:55`, in `prepare()`) — upstream uses calendar
    versioning (`YYYY.WW.N`). `tools/version.py` only recognizes tags matching
    `^vYYYY.WW.N$`; a `candidate-v…` tag is not recognized and CMake **aborts**
    if it cannot compute a version. Writing `.version` (override priority 1)
    makes the binaries report exactly `${pkgver}`:
+
    ```
    printf '%s\n' "${pkgver}" > .version
    ```
@@ -165,7 +172,7 @@ makepkg -R -f --noconfirm
 Two launchers exist, one per split package:
 
 | Menu entry | Package | Exec |
-|---|---|---|
+| --- | --- | --- |
 | "Lemonade App" (native Tauri) | `lemonade-desktop` | `lemonade-app` |
 | "Lemonade Web App" (browser) | `lemonade-server` | `lemonade-web-app` |
 
