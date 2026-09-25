@@ -28,7 +28,7 @@ This build:
 
 ## Deviations from the upstream PKGBUILD
 
-Three local edits. They are **not committed**, so re-apply them after any
+Three local edits, committed locally on `main`. Re-check them after any
 upstream packaging update (line numbers below are for the current revision):
 
 1. **Version / tag** (`PKGBUILD:13-15`) — builds a specific upstream ref, which
@@ -53,19 +53,17 @@ upstream packaging update (line numbers below are for the current revision):
 
 ### 0. Refresh the packaging repo
 
-The PKGBUILD / patches / package layout are maintained in the repo. Commit the
-local deviations on a branch so upstream changes can be pulled cleanly:
+The PKGBUILD / patches / package layout are maintained upstream. The local
+deviations are a commit on `main`, so pull and replay it on top:
 
 ```bash
-git checkout -b local-build          # once
-git add -A && git commit -m "local: candidate build + web-app entry removal"
-
 git fetch origin
-git rebase origin/main               # re-resolve PKGBUILD, re-apply deviations
+git rebase origin/main     # re-resolve PKGBUILD, re-apply the local deviations
 ```
 
-(`git stash` / `git pull` / `git stash pop` also works if you prefer not to
-commit.)
+This checkout is local only — never push to `origin` (that is upstream's repo).
+Build artifacts are ignored via the AUR-style `.gitignore` (ignore all,
+whitelist package files), so `git status` stays clean after a build.
 
 ### 1. Find the ref to build
 
