@@ -25,6 +25,7 @@ pkgbase = lemonade
 	makedepends = unzip
 	makedepends = webkit2gtk-4.1
 	makedepends = zstd
+	options = !debug
 	source = git+https://github.com/lemonade-sdk/lemonade.git#tag=candidate-v2026.40.0
 	source = lemonade-sysusers.patch
 	source = lemonade-web-app.patch

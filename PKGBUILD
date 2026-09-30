@@ -16,6 +16,7 @@ _tag=candidate-v${pkgver}
 arch=(x86_64)
 url=https://github.com/lemonade-sdk/lemonade
 license=(Apache-2.0)
+options=(!debug)
 makedepends=(
   cargo
   cargo-tauri
