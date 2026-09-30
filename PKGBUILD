@@ -80,6 +80,7 @@ package_lemonade-server() {
   depends=(
     curl
     glibc
+    jq
     libcap
     libgcc
     libstdc++
@@ -92,6 +93,7 @@ package_lemonade-server() {
   optdepends=(
     'fastflowlm: FLM support'
     'llama-cpp: Use system llama.cpp'
+    'xdg-utils: Open the web app when no Chromium-based browser is available'
   )
   backup=(etc/default/lemond)
 

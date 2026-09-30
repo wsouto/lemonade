@@ -35,6 +35,7 @@ pkgbase = lemonade
 pkgname = lemonade-server
 	depends = curl
 	depends = glibc
+	depends = jq
 	depends = libcap
 	depends = libgcc
 	depends = libstdc++
@@ -45,6 +46,7 @@ pkgname = lemonade-server
 	depends = zstd
 	optdepends = fastflowlm: FLM support
 	optdepends = llama-cpp: Use system llama.cpp
+	optdepends = xdg-utils: Open the web app when no Chromium-based browser is available
 	backup = etc/default/lemond
 
 pkgname = lemonade-desktop

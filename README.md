@@ -176,9 +176,10 @@ Two launchers exist, one per split package:
 | "Lemonade App" (native Tauri) | `lemonade-desktop` | `lemonade-app` |
 | "Lemonade Web App" (browser) | `lemonade-server` | `lemonade-web-app` |
 
-Both are thin frontends to `lemond`. The web launcher opens
-`http://localhost:<port>/lemonade` in a Chromium `--app` window (needs a
-Chromium browser and `jq`; otherwise falls back to `xdg-open`).
+The web launcher requires `jq` to discover the server port before browser
+selection. It prefers available Chromium-based browsers with `--app`; if none
+is available (or Chromium preference is disabled), it uses `xdg-open`, provided
+by the optional `xdg-utils` package.
 
 Both entries are shipped by default. If you ever want only one:
 
