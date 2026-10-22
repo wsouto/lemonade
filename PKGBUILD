@@ -10,7 +10,7 @@ pkgname=(
   lemonade-desktop
 )
 pkgdesc='Lemonade helps users discover and run local AI apps by serving optimized LLMs right from their own GPUs and NPUs'
-pkgver=2026.42.1
+pkgver=2026.43.3
 pkgrel=1
 _tag=v${pkgver}
 arch=(x86_64)
@@ -44,7 +44,7 @@ source=(
   lemonade-sysusers.patch
   lemonade-web-app.patch
 )
-b2sums=('d18a7371dd1d7f5a368cdd0ae0f9a05b2691ca2293bb683721140a90a9fe684a0be6f2b1023e53b8bfdc922fdfb4e363495c1fccf196a6cea0a9a366fb09ab13'
+b2sums=('f808f739d07065924f5e5adcb4075d0c42b591fdc01c859bc11dc31e2fd3d46e4d0262c9b2f59542c91c935661882c2ec72d920bd6eda710bd78307a5bfc1cc8'
         '5b8174e0d88a825eb69e96f82140bae27a081665b472efaac0920829963f7790b9a1b9c9f5d787901ff4278eb31dc389e3e09dfad61fda490c7ceea355c51e14'
         '229a2de3961618b00fffbaf0fdec40b121a5b900542099d82c27b486c6368ab11237128da3e4d0ceeef1c71e37325857667a37459dd7f82572be1f86cf57eae8')
 
